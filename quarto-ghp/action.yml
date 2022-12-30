@@ -42,6 +42,11 @@ runs:
         fi
         test -f setup.py && pip install -e ".[dev]"
         nbdev_docs
+    - name: Encrypt files
+      shell: bash
+      run: |
+        npm install -g staticrypt
+        find . -type f -name "*.html" -exec staticrypt {} MYPASSWORD --output {} \;
     - name: Enable GitHub Pages
       shell: python
       run: |
