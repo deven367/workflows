@@ -46,7 +46,7 @@ runs:
       shell: bash
       run: |
         npm install -g staticrypt
-        find . -type f -name "*.html" -exec staticrypt {} MYPASSWORD --output {} \;
+        find . -type f -name "*.html" -exec staticrypt {} ${{ secrets.MYPASSWORD }} --output {} \;
     - name: Enable GitHub Pages
       shell: python
       run: |
