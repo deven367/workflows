@@ -44,9 +44,11 @@ runs:
         nbdev_docs
     - name: Encrypt files
       shell: bash
+      env:
+        PASSWORD: ${{ secrets.MYPASSWORD }}
       run: |
         npm install -g staticrypt
-        find . -type f -name "*.html" -exec staticrypt {} ${{ secrets.MYPASSWORD }} --output {} \;
+        find . -type f -name "*.html" -exec staticrypt {} $PASSWORD --output {} \;
     - name: Enable GitHub Pages
       shell: python
       run: |
