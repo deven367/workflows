@@ -17,6 +17,10 @@ inputs:
     description: 'Force orphan branch?'
     default: true
     required: false
+  keep_files:
+    description: 'If existing files in the publish branch should be not removed before deploying'
+    required: false
+    default: 'false'
 
 runs:
   using: "composite"
@@ -51,6 +55,7 @@ runs:
       with:
         github_token: ${{ inputs.ghtoken }}
         force_orphan: ${{ inputs.orphan }}
+        keep_files: ${{ inputs.keep_files }}
         publish_dir: ./_docs
         # The following lines assign commit authorship to the official GH-Actions bot for deploys to `gh-pages` branch.
         # You can swap them out with your own user credentials.
